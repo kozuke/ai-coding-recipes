@@ -37,7 +37,7 @@ export default async function TipPage({ params }: Props) {
           ← トップページに戻る
         </Link>
       </div>
-      <article className="prose lg:prose-xl max-w-none">
+      <article className="max-w-none">
         <h1 className="text-3xl font-bold mb-4">{tip.title}</h1>
         <div className="flex gap-2 mb-6">
           {tip.tags.map((tag) => (
@@ -50,7 +50,7 @@ export default async function TipPage({ params }: Props) {
           作成日: {tip.created_at} | 更新日: {tip.updated_at}
         </div>
         <div 
-          className="mt-6"
+          className="mt-6 prose lg:prose-xl prose-headings:my-4 prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-pre:bg-gray-100 prose-pre:p-4 prose-pre:rounded"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
       </article>
