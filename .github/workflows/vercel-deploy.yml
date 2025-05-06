@@ -12,6 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - run: pnpm install && pnpm build
       - uses: amondnet/vercel-action@v20
         with:
