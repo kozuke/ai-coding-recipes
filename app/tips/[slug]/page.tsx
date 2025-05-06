@@ -1,6 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import { getTipBySlug } from '../../../lib/tips';
+import { getTipBySlug, getAllTips } from '../../../lib/tips';
+
+export function generateStaticParams() {
+  const tips = getAllTips();
+  return tips.map((tip) => ({
+    slug: tip.slug,
+  }));
+}
 
 export default function TipPage({ params }: { params: { slug: string } }) {
   const tip = getTipBySlug(params.slug);
