@@ -50,7 +50,7 @@ export default async function TipPage({ params }: Props) {
           作成日: {tip.created_at} | 更新日: {tip.updated_at}
         </div>
         <div 
-          className="mt-6 prose lg:prose-xl prose-headings:my-4 prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-pre:bg-gray-100 prose-pre:p-4 prose-pre:rounded"
+          className="mt-6 prose prose-slate max-w-none"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
       </article>
