@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { getTipBySlug, getAllTips } from '../../../lib/tips';
+import { markdownToHtml } from '../../../lib/markdown';
 
 export function generateStaticParams() {
   const tips = getAllTips();
@@ -13,7 +14,7 @@ type Props = {
   params: { slug: string }
 }
 
-export default function TipPage({ params }: Props) {
+export default async function TipPage({ params }: Props) {
   const tip = getTipBySlug(params.slug);
 
   if (!tip) {
@@ -26,6 +27,8 @@ export default function TipPage({ params }: Props) {
       </div>
     );
   }
+
+  const contentHtml = await markdownToHtml(tip.content);
 
   return (
     <div className="py-8">
@@ -46,9 +49,10 @@ export default function TipPage({ params }: Props) {
         <div className="text-sm text-gray-500 mb-6">
           作成日: {tip.created_at} | 更新日: {tip.updated_at}
         </div>
-        <div className="mt-6">
-          {tip.content}
-        </div>
+        <div 
+          className="mt-6"
+          dangerouslySetInnerHTML={{ __html: contentHtml }}
+        />
       </article>
     </div>
   );
