@@ -5,9 +5,7 @@ import { getTipBySlug, getAllTips } from '../../../lib/tips';
 export function generateStaticParams() {
   const tips = getAllTips();
   return tips.map((tip) => ({
-    params: {
-      slug: tip.slug,
-    }
+    slug: tip.slug,
   }));
 }
 
