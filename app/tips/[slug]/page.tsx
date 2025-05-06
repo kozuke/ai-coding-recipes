@@ -9,7 +9,11 @@ export function generateStaticParams() {
   }));
 }
 
-export default function TipPage({ params }: { params: { slug: string } }) {
+type Props = {
+  params: { slug: string }
+}
+
+export default function TipPage({ params }: Props) {
   const tip = getTipBySlug(params.slug);
 
   if (!tip) {
