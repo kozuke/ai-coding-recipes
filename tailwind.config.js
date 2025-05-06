@@ -9,42 +9,32 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
+            color: '#333',
+            a: {
+              color: '#3182ce',
+              '&:hover': {
+                color: '#2c5282',
+              },
+            },
             h1: {
-              fontSize: '2.25rem',
+              color: '#1a202c',
               fontWeight: '700',
-              marginTop: '1.5rem',
-              marginBottom: '1rem',
             },
             h2: {
-              fontSize: '1.875rem',
+              color: '#1a202c',
               fontWeight: '600',
-              marginTop: '1.5rem',
-              marginBottom: '0.75rem',
             },
             h3: {
-              fontSize: '1.5rem',
+              color: '#1a202c',
               fontWeight: '600',
-              marginTop: '1.25rem',
-              marginBottom: '0.75rem',
-            },
-            pre: {
-              backgroundColor: '#f3f4f6',
-              padding: '1rem',
-              borderRadius: '0.375rem',
             },
             code: {
-              backgroundColor: '#f3f4f6',
-              padding: '0.25rem',
-              borderRadius: '0.25rem',
-              fontWeight: '400',
+              color: '#24292e',
+              backgroundColor: '#f7fafc',
             },
-            ul: {
-              listStyleType: 'disc',
-              paddingLeft: '1.5rem',
-            },
-            ol: {
-              listStyleType: 'decimal',
-              paddingLeft: '1.5rem',
+            pre: {
+              backgroundColor: '#f7fafc',
+              color: '#24292e',
             },
           },
         },
