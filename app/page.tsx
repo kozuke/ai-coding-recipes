@@ -19,7 +19,7 @@ export default function Home() {
               {tip.tags && tip.tags.length > 0 && (
                 <div className="mt-1 mb-2">
                   {tip.tags.map((tag) => (
-                    <Tag key={`${tip.slug}-${tag}`} name={tag} />
+                    <Tag key={`${tip.slug}-${tag}`} name={tag} linkable={true} />
                   ))}
                 </div>
               )}

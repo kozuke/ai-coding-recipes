@@ -11,6 +11,8 @@
    GitHub ActionsからVercelへの自動デプロイ
 3. [Tips一覧タグ表示機能](features/tips-list-enhancement.md)  
    トップページのTips一覧にタグを表示
+4. [タグページ機能](features/tag-pages.md)  
+   タグ別ページを追加し、各タグに紐づくTips一覧を表示
 
 ## 今後の機能
 

@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { getTipBySlug, getAllTips } from '../../../lib/tips';
 import { markdownToHtml } from '../../../lib/markdown';
+import Tag from '../../../components/ui/Tag';
 
 export function generateStaticParams() {
   const tips = getAllTips();
@@ -41,9 +42,7 @@ export default async function TipPage({ params }: Props) {
         <h1 className="text-3xl font-bold mb-4">{tip.title}</h1>
         <div className="flex gap-2 mb-6">
           {tip.tags.map((tag) => (
-            <span key={tag} className="bg-gray-200 px-2 py-1 rounded text-sm">
-              {tag}
-            </span>
+            <Tag key={tag} name={tag} linkable={true} />
           ))}
         </div>
         <div className="text-sm text-gray-500 mb-6">
