@@ -16,7 +16,8 @@ type Props = {
 }
 
 export default async function TipPage({ params }: Props) {
-  const tip = getTipBySlug(params.slug);
+  const { slug } = await params;
+  const tip = getTipBySlug(slug);
 
   if (!tip) {
     return (

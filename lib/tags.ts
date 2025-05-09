@@ -1,4 +1,5 @@
 import { getAllTips, Tip } from './tips';
+export type { Tip } from './tips';
 
 /**
  * 全タグの一覧を取得する
