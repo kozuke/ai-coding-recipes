@@ -15,7 +15,7 @@ export default function Tag({ name, linkable = false }: TagProps) {
 
   if (linkable) {
     return (
-      <Link href={`/tags/${name}`}>
+      <Link href={`/tags/${encodeURIComponent(name)}`}>
         {tagContent}
       </Link>
     );

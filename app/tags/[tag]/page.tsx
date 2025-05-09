@@ -6,7 +6,7 @@ import { getAllTags } from '../../../lib/tags';
 export function generateStaticParams() {
   const tags = getAllTags();
   return tags.map((tag) => ({
-    tag,
+    tag: encodeURIComponent(tag),
   }));
 }
 
@@ -16,7 +16,8 @@ type Props = {
 
 export default function TagPage({ params }: Props) {
   const { tag } = params;
-  const tips = getTipsByTag(tag);
+  const decodedTag = decodeURIComponent(tag);
+  const tips = getTipsByTag(decodedTag);
 
   return (
     <div className="py-8">
@@ -25,7 +26,7 @@ export default function TagPage({ params }: Props) {
           ← トップページに戻る
         </Link>
       </div>
-      <h1 className="text-3xl font-bold mb-6">タグ: {tag}</h1>
+      <h1 className="text-3xl font-bold mb-6">タグ: {decodedTag}</h1>
       
       {tips.length === 0 ? (
         <p className="text-gray-600">このタグが付いたTipsはまだありません。</p>
