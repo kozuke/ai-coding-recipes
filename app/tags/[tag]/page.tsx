@@ -14,7 +14,7 @@ type Props = {
   params: { tag: string }
 }
 
-export default function TagPage({ params }: Props) {
+export default async function TagPage({ params }: Props) {
   const { tag } = params;
   const decodedTag = decodeURIComponent(tag);
   const tips = getTipsByTag(decodedTag);
