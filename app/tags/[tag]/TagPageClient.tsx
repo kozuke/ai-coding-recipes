@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { Tip } from '../../../lib/tags';
 
@@ -13,12 +13,10 @@ export default function TagPageClient({ decodedTag, tips }: TagPageClientProps) 
   const displayTag = typeof decodedTag === 'string' && decodedTag.includes('%') 
     ? decodeURIComponent(decodedTag) 
     : decodedTag;
-    
-  useEffect(() => {
-    console.log('decodedTag:', decodedTag);
-    console.log('displayTag:', displayTag);
-    console.log('tips:', tips);
-  }, [decodedTag, displayTag, tips]);
+  
+  console.log('Client: decodedTag:', decodedTag);
+  console.log('Client: displayTag:', displayTag);
+  console.log('Client: tips:', tips);
 
   return (
     <div className="py-8">
