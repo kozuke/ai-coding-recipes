@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ main ]
 
+# 権限設定を追加
+permissions:
+  contents: read
+  pull-requests: write # PRへのコメント権限を追加
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -21,6 +26,8 @@ jobs:
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-args: '--prod --yes'
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }} # 組織IDを追加
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }} # プロジェクトIDを追加
       - name: Deploy to Vercel (Preview)
         if: github.event_name == 'pull_request'
         uses: amondnet/vercel-action@v20
@@ -29,3 +36,5 @@ jobs:
           vercel-args: '--yes'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           github-comment: true
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }} # 組織IDを追加
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }} # プロジェクトIDを追加
