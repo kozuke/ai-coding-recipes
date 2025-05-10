@@ -4,11 +4,21 @@ import TagPageClient from './TagPageClient';
 import { getAllTips } from '../../../lib/tips';
 
 export function generateStaticParams() {
-  const tags = getAllTags();
-  console.log('Static generation - all tags:', tags);
-  return tags.map((tag) => ({
-    tag: encodeURIComponent(tag),
-  }));
+  const tags = getAllTips().flatMap(tip => tip.tags || []);
+  const uniqueTags = [...new Set(tags)];
+  
+  console.log('Static generation - raw tags:', uniqueTags);
+  
+  const normalizedTags = uniqueTags.map(tag => tag.trim());
+  
+  const encodedParams = normalizedTags.map(tag => {
+    const encoded = encodeURIComponent(tag);
+    console.log(`Encoding tag: "${tag}" -> "${encoded}"`);
+    return { tag: encoded };
+  });
+  
+  console.log('Static generation - encoded params:', encodedParams);
+  return encodedParams;
 }
 
 type Props = {
