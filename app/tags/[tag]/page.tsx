@@ -2,23 +2,53 @@ import React from 'react';
 import { getAllTags, getTipsByTag, Tip } from '../../../lib/tags';
 import TagPageClient from './TagPageClient';
 import { getAllTips } from '../../../lib/tips';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 
 export function generateStaticParams() {
-  const tags = getAllTips().flatMap(tip => tip.tags || []);
-  const uniqueTags = [...new Set(tags)];
-  
-  console.log('Static generation - raw tags:', uniqueTags);
-  
-  const normalizedTags = uniqueTags.map(tag => tag.trim());
-  
-  const encodedParams = normalizedTags.map(tag => {
-    const encoded = encodeURIComponent(tag);
-    console.log(`Encoding tag: "${tag}" -> "${encoded}"`);
-    return { tag: encoded };
-  });
-  
-  console.log('Static generation - encoded params:', encodedParams);
-  return encodedParams;
+  try {
+    const tipsDirectory = path.join(process.cwd(), 'content/tips');
+    console.log('Tips directory for static generation:', tipsDirectory);
+    
+    const fileNames = fs.readdirSync(tipsDirectory);
+    console.log('Files found for static generation:', fileNames);
+    
+    const allTags = new Set();
+    
+    fileNames.forEach(fileName => {
+      if (!fileName.endsWith('.md')) return;
+      
+      try {
+        const fullPath = path.join(tipsDirectory, fileName);
+        const fileContents = fs.readFileSync(fullPath, 'utf8');
+        const matterResult = matter(fileContents);
+        
+        if (matterResult.data.tags && Array.isArray(matterResult.data.tags)) {
+          matterResult.data.tags.forEach(tag => {
+            if (tag) allTags.add(tag.trim());
+          });
+        }
+      } catch (error) {
+        console.error(`Error processing file ${fileName}:`, error);
+      }
+    });
+    
+    const uniqueTags = [...allTags];
+    console.log('Static generation - unique tags:', uniqueTags);
+    
+    const encodedParams = uniqueTags.map(tag => {
+      const encoded = encodeURIComponent(tag);
+      console.log(`Encoding tag: "${tag}" -> "${encoded}"`);
+      return { tag: encoded };
+    });
+    
+    console.log('Static generation - encoded params:', encodedParams);
+    return encodedParams;
+  } catch (error) {
+    console.error('Error in generateStaticParams:', error);
+    return [];
+  }
 }
 
 type Props = {
