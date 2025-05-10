@@ -17,17 +17,38 @@ type Props = {
 
 export default function TagPage({ params }: Props) {
   const { tag } = params;
-  const decodedTag = decodeURIComponent(tag);
+  
+  const recursiveDecodeURIComponent = (encodedStr: string): string => {
+    try {
+      const decoded = decodeURIComponent(encodedStr);
+      return decoded.includes('%') ? recursiveDecodeURIComponent(decoded) : decoded;
+    } catch (e) {
+      console.error('Decoding error:', e);
+      return encodedStr;
+    }
+  };
+  
   console.log('Server: Tag before decode:', tag);
-  console.log('Server: Tag after decode:', decodedTag);
+  const decodedTag = recursiveDecodeURIComponent(tag);
+  console.log('Server: Tag after recursive decode:', decodedTag);
   
   const allTips = getAllTips();
   console.log('Server: All tips count:', allTips.length);
   
   const normalizedTag = decodedTag.trim();
+  console.log('Server: Normalized tag:', normalizedTag);
+  
   const tips = allTips.filter((tip) => {
     if (!tip.tags || !Array.isArray(tip.tags)) return false;
-    return tip.tags.some(t => t.trim() === normalizedTag);
+    
+    const matchingTags = tip.tags.filter(t => {
+      const normalizedTipTag = t.trim();
+      const isMatch = normalizedTipTag === normalizedTag;
+      console.log(`Comparing: "${normalizedTipTag}" with "${normalizedTag}" = ${isMatch}`);
+      return isMatch;
+    });
+    
+    return matchingTags.length > 0;
   });
   
   console.log('Server: Filtered tips count:', tips.length);
