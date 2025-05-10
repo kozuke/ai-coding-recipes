@@ -56,7 +56,7 @@ type Props = {
 };
 
 export default async function TagPage({ params }: Props) {
-  const { tag } = await params;
+  const { tag } = params;
   
   const recursiveDecodeURIComponent = (encodedStr: string): string => {
     try {
@@ -72,27 +72,32 @@ export default async function TagPage({ params }: Props) {
   const decodedTag = recursiveDecodeURIComponent(tag);
   console.log('Server: Tag after recursive decode:', decodedTag);
   
-  const allTips = getAllTips();
-  console.log('Server: All tips count:', allTips.length);
-  
-  const normalizedTag = decodedTag.trim();
-  console.log('Server: Normalized tag:', normalizedTag);
-  
-  const tips = allTips.filter((tip) => {
-    if (!tip.tags || !Array.isArray(tip.tags)) return false;
+  try {
+    const allTips = getAllTips();
+    console.log('Server: All tips count:', allTips.length);
     
-    const matchingTags = tip.tags.filter(t => {
-      const normalizedTipTag = t.trim();
-      const isMatch = normalizedTipTag === normalizedTag;
-      console.log(`Comparing: "${normalizedTipTag}" with "${normalizedTag}" = ${isMatch}`);
-      return isMatch;
+    const normalizedTag = decodedTag.trim();
+    console.log('Server: Normalized tag:', normalizedTag);
+    
+    const tips = allTips.filter((tip) => {
+      if (!tip.tags || !Array.isArray(tip.tags)) return false;
+      
+      const matchingTags = tip.tags.filter(t => {
+        const normalizedTipTag = t.trim();
+        const isMatch = normalizedTipTag === normalizedTag;
+        console.log(`Comparing: "${normalizedTipTag}" with "${normalizedTag}" = ${isMatch}`);
+        return isMatch;
+      });
+      
+      return matchingTags.length > 0;
     });
     
-    return matchingTags.length > 0;
-  });
-  
-  console.log('Server: Filtered tips count:', tips.length);
-  console.log('Server: Filtered tips:', tips.map(t => t.title));
+    console.log('Server: Filtered tips count:', tips.length);
+    console.log('Server: Filtered tips:', tips.map(t => t.title));
 
-  return <TagPageClient decodedTag={decodedTag} tips={tips} />;
+    return <TagPageClient decodedTag={decodedTag} tips={tips} />;
+  } catch (error) {
+    console.error('Server: Error fetching tips:', error);
+    return <TagPageClient decodedTag={decodedTag} tips={[]} />;
+  }
 }
