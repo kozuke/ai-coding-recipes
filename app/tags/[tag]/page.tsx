@@ -55,8 +55,8 @@ type Props = {
   params: { tag: string };
 };
 
-export default function TagPage({ params }: Props) {
-  const { tag } = params;
+export default async function TagPage({ params }: Props) {
+  const { tag } = await params;
   
   const recursiveDecodeURIComponent = (encodedStr: string): string => {
     try {
