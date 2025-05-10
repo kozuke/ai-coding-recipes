@@ -3,6 +3,8 @@ name: CI/CD to Vercel
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build-and-deploy:
@@ -13,7 +15,17 @@ jobs:
         with:
           version: 8
       - run: pnpm install && pnpm build
-      - uses: amondnet/vercel-action@v20
+      - name: Deploy to Vercel (Production)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: amondnet/vercel-action@v20
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-args: '--prod --yes'
+      - name: Deploy to Vercel (Preview)
+        if: github.event_name == 'pull_request'
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-args: '--yes'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-comment: true
