@@ -3,6 +3,14 @@ import path from 'path';
 import matter from 'gray-matter';
 
 const tipsDirectory = path.join(process.cwd(), 'content/tips');
+console.log('Tips directory path:', tipsDirectory);
+
+try {
+  const files = fs.readdirSync(tipsDirectory);
+  console.log('Files in tips directory:', files);
+} catch (error) {
+  console.error('Error reading tips directory:', error);
+}
 
 export type Tip = {
   slug: string;
