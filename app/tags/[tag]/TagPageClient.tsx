@@ -10,10 +10,15 @@ interface TagPageClientProps {
 }
 
 export default function TagPageClient({ decodedTag, tips }: TagPageClientProps) {
+  const displayTag = typeof decodedTag === 'string' && decodedTag.includes('%') 
+    ? decodeURIComponent(decodedTag) 
+    : decodedTag;
+    
   useEffect(() => {
     console.log('decodedTag:', decodedTag);
+    console.log('displayTag:', displayTag);
     console.log('tips:', tips);
-  }, [decodedTag, tips]);
+  }, [decodedTag, displayTag, tips]);
 
   return (
     <div className="py-8">
@@ -22,7 +27,7 @@ export default function TagPageClient({ decodedTag, tips }: TagPageClientProps) 
           ← トップページに戻る
         </Link>
       </div>
-      <h1 className="text-3xl font-bold mb-6">タグ: {decodedTag}</h1>
+      <h1 className="text-3xl font-bold mb-6">タグ: {displayTag}</h1>
 
       {tips.length === 0 ? (
         <p className="text-gray-600">このタグが付いたTipsはまだありません。</p>
