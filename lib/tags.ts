@@ -25,8 +25,16 @@ export function getAllTags(): string[] {
  */
 export function getTipsByTag(tag: string): Tip[] {
   const tips = getAllTips();
+  console.log('All tips:', tips);
+  console.log('Searching for tag:', tag);
   
-  return tips.filter((tip) => 
-    tip.tags && Array.isArray(tip.tags) && tip.tags.includes(tag)
-  );
+  const normalizedTag = tag.trim();
+  const filteredTips = tips.filter((tip) => {
+    if (!tip.tags || !Array.isArray(tip.tags)) return false;
+    
+    return tip.tags.some(t => t.trim() === normalizedTag);
+  });
+  
+  console.log('Filtered tips:', filteredTips);
+  return filteredTips;
 }

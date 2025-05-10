@@ -16,7 +16,11 @@ type Props = {
 export default async function TagPage({ params }: Props) {
   const { tag } = params;
   const decodedTag = decodeURIComponent(tag);
+  console.log('Server: Tag before decode:', tag);
+  console.log('Server: Tag after decode:', decodedTag);
+  
   const tips: Tip[] = getTipsByTag(decodedTag);
+  console.log('Server: Found tips count:', tips.length);
 
   return <TagPageClient decodedTag={decodedTag} tips={tips} />;
 }
