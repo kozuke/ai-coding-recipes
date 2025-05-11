@@ -46,11 +46,15 @@ body {
   }
   
   .markdown-content ul {
-    @apply list-disc pl-6 my-3;
+    @apply list-disc pl-6 my-3 dark:text-gray-300;
   }
   
   .markdown-content ol {
-    @apply list-decimal pl-6 my-3;
+    @apply list-decimal pl-6 my-3 dark:text-gray-300;
+  }
+  
+  .markdown-content li {
+    @apply dark:text-gray-300;
   }
   
   .markdown-content li > ul, 
@@ -59,14 +63,14 @@ body {
   }
   
   .markdown-content pre {
-    @apply bg-gray-100 dark:bg-gray-800 p-4 rounded my-4 overflow-x-auto;
+    @apply bg-gray-100 dark:bg-gray-900 p-4 rounded my-4 overflow-x-auto border dark:border-gray-700;
   }
   
   .markdown-content code {
-    @apply font-mono bg-gray-100 dark:bg-gray-800 dark:text-gray-200 px-1 py-0.5 rounded text-sm;
+    @apply font-mono bg-gray-100 dark:bg-gray-800 dark:text-gray-100 px-1 py-0.5 rounded text-sm;
   }
   
   .markdown-content pre code {
-    @apply bg-transparent p-0;
+    @apply bg-transparent p-0 dark:text-gray-100;
   }
 }
