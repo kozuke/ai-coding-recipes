@@ -4,6 +4,7 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
+  darkMode: 'media', // Enable dark mode based on user's system preference
   theme: {
     extend: {
       typography: {
@@ -35,6 +36,37 @@ module.exports = {
             pre: {
               backgroundColor: '#f7fafc',
               color: '#24292e',
+            },
+          },
+        },
+        dark: {
+          css: {
+            color: '#d1d5db',
+            a: {
+              color: '#60a5fa',
+              '&:hover': {
+                color: '#93c5fd',
+              },
+            },
+            h1: {
+              color: '#f3f4f6',
+              fontWeight: '700',
+            },
+            h2: {
+              color: '#f3f4f6',
+              fontWeight: '600',
+            },
+            h3: {
+              color: '#f3f4f6',
+              fontWeight: '600',
+            },
+            code: {
+              color: '#e5e7eb',
+              backgroundColor: '#1f2937',
+            },
+            pre: {
+              backgroundColor: '#1f2937',
+              color: '#e5e7eb',
             },
           },
         },
