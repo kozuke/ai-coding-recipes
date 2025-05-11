@@ -34,7 +34,7 @@ export default function TagPageClient({ decodedTag, tips }: TagPageClientProps) 
           {tips.map((tip) => (
             <li
               key={tip.slug}
-              className="border p-4 rounded-lg hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800 transition-colors"
+              className="border p-4 rounded-lg hover:bg-gray-50 transition-colors dark:border-gray-700 dark:hover:bg-gray-800"
             >
               <Link href={`/tips/${tip.slug}`} className="block">
                 <h3 className="text-xl font-semibold text-blue-600 hover:underline dark:text-blue-400">

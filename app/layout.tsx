@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <header className="bg-gray-800 text-white p-4 dark:bg-gray-900 dark:border-b dark:border-gray-800">
+        <header className="bg-gray-800 text-white p-4 dark:bg-gray-900">
           <div className="container mx-auto">
             <h1 className="text-2xl font-bold">AI Coding Recipes</h1>
             <p className="text-sm">AI駆動開発Tipsコレクションサイト</p>
@@ -27,8 +27,8 @@ export default function RootLayout({
         <main className="container mx-auto p-4">
           {children}
         </main>
-        <footer className="bg-gray-100 p-4 mt-8 dark:bg-gray-800 dark:text-gray-300">
-          <div className="container mx-auto text-center text-gray-600 dark:text-gray-400 text-sm">
+        <footer className="bg-gray-100 p-4 mt-8 dark:bg-gray-800 dark:text-gray-200">
+          <div className="container mx-auto text-center text-gray-600 dark:text-gray-300 text-sm">
             &copy; {new Date().getFullYear()} AI Coding Recipes
           </div>
         </footer>

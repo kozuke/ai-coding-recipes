@@ -1,10 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'media', // Enable dark mode based on system preference
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
-  darkMode: 'media', // Enable dark mode based on user's system preference
   theme: {
     extend: {
       typography: {
@@ -41,9 +41,9 @@ module.exports = {
         },
         dark: {
           css: {
-            color: '#d1d5db',
+            color: '#d1d5db', // Light gray for dark mode text
             a: {
-              color: '#60a5fa',
+              color: '#60a5fa', // Lighter blue for dark mode links
               '&:hover': {
                 color: '#93c5fd',
               },
@@ -62,7 +62,7 @@ module.exports = {
             },
             code: {
               color: '#e5e7eb',
-              backgroundColor: '#1f2937',
+              backgroundColor: '#374151',
             },
             pre: {
               backgroundColor: '#1f2937',
