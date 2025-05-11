@@ -4,6 +4,7 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
+  darkMode: 'media', // OSの設定に従ってダークモードを適用
   theme: {
     extend: {
       typography: {
