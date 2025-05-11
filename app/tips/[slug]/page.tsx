@@ -50,18 +50,7 @@ export default async function TipPage({ params }: Props) {
           作成日: {tip.created_at} | 更新日: {tip.updated_at}
         </div>
         <div 
-作成日: {tip.created_at} | 更新日: {tip.updated_at}
-        </div>
-        <div 
-          className={styles.contentWrapper}
-          dangerouslySetInnerHTML={{ __html: contentHtml }}
-        />
-      </article>
-    </div>
-  );
-}
-
-// TODO: Implement styles object with contentWrapper class
+          className="mt-6 prose prose-indigo dark:prose-invert prose-p:text-gray-600 dark:prose-p:text-gray-300 prose-headings:text-gray-700 dark:prose-headings:text-gray-200 prose-a:text-blue-500 dark:prose-a:text-blue-400 prose-code:bg-blue-50 dark:prose-code:bg-gray-800 prose-pre:bg-gray-50 dark:prose-pre:bg-gray-800 max-w-none"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
       </article>

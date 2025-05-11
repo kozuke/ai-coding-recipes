@@ -15,9 +15,6 @@ export default function Home() {
         {tips.map((tip) => (
           <li key={tip.slug} className="border dark:border-gray-700 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
             <Link href={`/tips/${tip.slug}`} className="block">
-{tips.map((tip) => (
-          <li key={tip.slug} className="border dark:border-gray-700 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-            <Link href={`/tips/${tip.slug}`} className="block">
               <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 hover:underline">{tip.title}</h3>
               <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                 作成日: {tip.created_at}
@@ -30,20 +27,6 @@ export default function Home() {
                 ))}
               </div>
             )}
-          </li>
-        ))}
-      </ul>
-        <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-          作成日: {tip.created_at}
-        </div>
-      </Link>
-      {tip.tags && tip.tags.length > 0 && (
-        <div className="mt-1 mb-2">
-          {tip.tags.map((tag) => (
-            <Tag key={`${tip.slug}-${tag}`} name={tag} linkable={true} />
-          ))}
-        </div>
-      )}
           </li>
         ))}
       </ul>
