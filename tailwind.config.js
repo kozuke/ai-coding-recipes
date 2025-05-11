@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'media', // Enable dark mode based on system preference
+  darkMode: 'media',
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
@@ -41,32 +41,32 @@ module.exports = {
         },
         dark: {
           css: {
-            color: '#d1d5db', // Light gray for dark mode text
+            color: '#e1e1e1',
             a: {
-              color: '#60a5fa', // Lighter blue for dark mode links
+              color: '#63b3ed',
               '&:hover': {
-                color: '#93c5fd',
+                color: '#90cdf4',
               },
             },
             h1: {
-              color: '#f3f4f6',
+              color: '#f7fafc',
               fontWeight: '700',
             },
             h2: {
-              color: '#f3f4f6',
+              color: '#f7fafc',
               fontWeight: '600',
             },
             h3: {
-              color: '#f3f4f6',
+              color: '#f7fafc',
               fontWeight: '600',
             },
             code: {
-              color: '#e5e7eb',
-              backgroundColor: '#374151',
+              color: '#e2e8f0',
+              backgroundColor: '#2d3748',
             },
             pre: {
-              backgroundColor: '#1f2937',
-              color: '#e5e7eb',
+              backgroundColor: '#2d3748',
+              color: '#e2e8f0',
             },
           },
         },
