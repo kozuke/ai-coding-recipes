@@ -35,7 +35,7 @@ export default async function TipPage({ params }: Props) {
   return (
     <div className="py-8">
       <div className="mb-4">
-        <Link href="/" className="text-blue-600 hover:underline">
+        <Link href="/" className="text-blue-600 dark:text-blue-400 hover:underline">
           ← トップページに戻る
         </Link>
       </div>
@@ -46,11 +46,11 @@ export default async function TipPage({ params }: Props) {
             <Tag key={tag} name={tag} linkable={true} />
           ))}
         </div>
-        <div className="text-sm text-gray-500 mb-6">
+        <div className="text-sm text-gray-500 dark:text-gray-400 mb-6">
           作成日: {tip.created_at} | 更新日: {tip.updated_at}
         </div>
         <div 
-          className="mt-6 prose prose-indigo prose-p:text-gray-600 prose-headings:text-gray-700 prose-a:text-blue-500 prose-code:bg-blue-50 prose-pre:bg-gray-50 max-w-none"
+          className="mt-6 prose prose-indigo dark:prose-invert prose-p:text-gray-600 dark:prose-p:text-gray-300 prose-headings:text-gray-700 dark:prose-headings:text-gray-200 prose-a:text-blue-500 dark:prose-a:text-blue-400 prose-code:bg-blue-50 dark:prose-code:bg-gray-800 prose-pre:bg-gray-50 dark:prose-pre:bg-gray-900 max-w-none"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
       </article>
