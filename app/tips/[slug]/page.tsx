@@ -16,14 +16,14 @@ type Props = {
 }
 
 export default async function TipPage({ params }: Props) {
-  const { slug } = await params;
+  const { slug } = params;
   const tip = getTipBySlug(slug);
 
   if (!tip) {
     return (
-      <div className="py-8">
+      <div className="min-h-[60vh] flex flex-col items-center justify-center">
         <h2 className="text-3xl font-bold mb-6">Tipが見つかりませんでした</h2>
-        <Link href="/" className="text-blue-600 hover:underline">
+        <Link href="/" className="text-primary hover:underline">
           トップページに戻る
         </Link>
       </div>
@@ -33,24 +33,28 @@ export default async function TipPage({ params }: Props) {
   const contentHtml = await markdownToHtml(tip.content);
 
   return (
-    <div className="py-8">
-      <div className="mb-4">
-        <Link href="/" className="text-blue-600 dark:text-blue-400 hover:underline">
+    <div className="max-w-4xl mx-auto">
+      <div className="mb-8">
+        <Link href="/" className="text-primary hover:underline inline-flex items-center">
           ← トップページに戻る
         </Link>
       </div>
-      <article className="max-w-none">
-        <h1 className="text-3xl font-bold mb-4">{tip.title}</h1>
-        <div className="flex gap-2 mb-6">
+      
+      <article className="card p-8">
+        <h1 className="text-4xl font-bold mb-6">{tip.title}</h1>
+        
+        <div className="flex flex-wrap gap-2 mb-6">
           {tip.tags.map((tag) => (
             <Tag key={tag} name={tag} linkable={true} />
           ))}
         </div>
-        <div className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+        
+        <div className="text-sm text-foreground/60 mb-8">
           作成日: {tip.created_at} | 更新日: {tip.updated_at}
         </div>
+        
         <div 
-          className="mt-6 prose prose-indigo dark:prose-invert prose-p:text-gray-600 dark:prose-p:text-gray-300 prose-headings:text-gray-700 dark:prose-headings:text-gray-200 prose-a:text-blue-500 dark:prose-a:text-blue-400 prose-code:bg-blue-50 dark:prose-code:bg-gray-800 prose-pre:bg-gray-50 dark:prose-pre:bg-gray-900 max-w-none"
+          className="prose prose-lg dark:prose-invert max-w-none markdown-content"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
       </article>

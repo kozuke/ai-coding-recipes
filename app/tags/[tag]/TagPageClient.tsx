@@ -13,40 +13,36 @@ export default function TagPageClient({ decodedTag, tips }: TagPageClientProps) 
   const displayTag = typeof decodedTag === 'string' && decodedTag.includes('%') 
     ? decodeURIComponent(decodedTag) 
     : decodedTag;
-  
-  console.log('Client: decodedTag:', decodedTag);
-  console.log('Client: displayTag:', displayTag);
-  console.log('Client: tips:', tips);
 
   return (
-    <div className="py-8">
-      <div className="mb-4">
-        <Link href="/" className="text-blue-600 dark:text-blue-400 hover:underline">
+    <div className="max-w-4xl mx-auto">
+      <div className="mb-8">
+        <Link href="/" className="text-primary hover:underline inline-flex items-center">
           ← トップページに戻る
         </Link>
       </div>
-      <h1 className="text-3xl font-bold mb-6">タグ: {displayTag}</h1>
+
+      <h1 className="text-4xl font-bold mb-8">タグ: {displayTag}</h1>
 
       {tips.length === 0 ? (
-        <p className="text-gray-600 dark:text-gray-400">このタグが付いたTipsはまだありません。</p>
+        <div className="card p-8 text-center">
+          <p className="text-foreground/60">このタグが付いたTipsはまだありません。</p>
+        </div>
       ) : (
-        <ul className="space-y-4">
+        <div className="grid gap-6">
           {tips.map((tip) => (
-            <li
-              key={tip.slug}
-              className="border dark:border-gray-700 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-            >
-              <Link href={`/tips/${tip.slug}`} className="block">
-                <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 hover:underline">
+            <article key={tip.slug} className="card p-6">
+              <Link href={`/tips/${tip.slug}`}>
+                <h3 className="text-xl font-semibold hover:text-primary transition-colors">
                   {tip.title}
                 </h3>
-                <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                  作成日: {tip.created_at}
+                <div className="text-sm text-foreground/60 mt-2">
+                  {tip.created_at}
                 </div>
               </Link>
-            </li>
+            </article>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
