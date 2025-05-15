@@ -8,6 +8,9 @@ const nextConfig = {
   env: {
     DEBUG_MODE: 'true',
   },
+  experimental: {
+    turbo: false
+  }
 };
 
 module.exports = nextConfig;
