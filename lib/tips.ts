@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-function findValidDirectory(...possiblePaths: string[]): string {
+export function findValidDirectory(...possiblePaths: string[]): string {
   for (const dirPath of possiblePaths) {
     try {
       if (fs.existsSync(dirPath) && fs.statSync(dirPath).isDirectory()) {

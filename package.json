@@ -6,25 +6,31 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-search-index": "ts-node --esm scripts/generate-search-index.ts",
+    "prebuild": "pnpm generate-search-index"
   },
   "dependencies": {
+    "flexsearch": "^0.8.167",
     "gray-matter": "^4.0.3",
     "next": "15.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hotkeys-hook": "^5.1.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.5",
     "@tailwindcss/typography": "^0.5.16",
+    "@types/flexsearch": "^0.7.42",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.3.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
