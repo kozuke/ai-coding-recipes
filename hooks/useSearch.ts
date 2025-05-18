@@ -49,7 +49,10 @@ export function useSearch() {
     async function loadSearchIndex() {
       try {
         setIsLoading(true);
-        const response = await fetch('/search-index.json');
+        const response = await fetch('/search-index.json', {
+          // キャッシュを無効化して常に最新のインデックスを取得
+          cache: 'no-store'
+        });
         
         if (!response.ok) {
           throw new Error('Failed to load search index');
