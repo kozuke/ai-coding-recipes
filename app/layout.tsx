@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import React from 'react';
 import Link from 'next/link';
+import SearchTrigger from '../components/SearchTrigger';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -41,6 +42,8 @@ export default function RootLayout({
             <p>&copy; {new Date().getFullYear()} AI Coding Recipes</p>
           </div>
         </footer>
+        {/* SearchTriggerをここに追加 */}
+        <SearchTrigger />
       </body>
     </html>
   );
