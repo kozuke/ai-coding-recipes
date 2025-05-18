@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-search-index": "ts-node --esm scripts/generate-search-index.ts",
+    "generate-search-index": "ts-node scripts/generate-search-index.ts",
     "prebuild": "pnpm generate-search-index",
     "docker-build": "docker-compose build",
     "docker-start": "docker-compose up"
