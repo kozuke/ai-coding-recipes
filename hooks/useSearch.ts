@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import * as FlexSearch from 'flexsearch';
+import FlexSearch from 'flexsearch';
 
 export type SearchItem = {
   slug: string;
@@ -22,23 +22,18 @@ export function useSearch() {
   const [error, setError] = useState<Error | null>(null);
   
   const index = useMemo(() => {
-    const idx = new FlexSearch.Document({
-      document: {
-        id: 'slug',
-        index: ['title', 'tags', 'content']
-      },
+    const idx = FlexSearch.create({
+      preset: 'performance',
       tokenize: 'full',
       cache: 100
     });
     
     if (searchIndex.length > 0) {
       searchIndex.forEach(item => {
-        idx.add({
-          slug: item.slug,
-          title: item.title,
-          tags: item.tags.join(' '),
-          content: item.content
-        });
+        idx.add(
+          item.slug,
+          item.title + ' ' + item.tags.join(' ') + ' ' + item.content
+        );
       });
     }
     
@@ -75,29 +70,25 @@ export function useSearch() {
     if (!query || isLoading || error) return [];
     
     try {
-      const results = index.search(query, { limit: 10 });
+      const results = index.search(query, 10) as string[];
       
       const searchResults: SearchResult[] = [];
       
       if (results && results.length > 0) {
         const slugSet = new Set<string>();
         
-        results.forEach(resultSet => {
-          if (resultSet.result) {
-            (resultSet.result as string[]).forEach((slug: string) => {
-              if (!slugSet.has(slug)) {
-                slugSet.add(slug);
-                const item = searchIndex.find(item => item.slug === slug);
-                if (item) {
-                  searchResults.push({
-                    slug,
-                    title: item.title,
-                    tags: item.tags,
-                    summary: item.summary
-                  });
-                }
-              }
-            });
+        results.forEach(slug => {
+          if (!slugSet.has(slug)) {
+            slugSet.add(slug);
+            const item = searchIndex.find(item => item.slug === slug);
+            if (item) {
+              searchResults.push({
+                slug,
+                title: item.title,
+                tags: item.tags,
+                summary: item.summary
+              });
+            }
           }
         });
       }

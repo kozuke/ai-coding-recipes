@@ -1,8 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { findValidDirectory } from '../lib/tips';
 
-const tipsDirectory = path.join(process.cwd(), 'content/tips');
+const tipsDirectory = findValidDirectory(
+  path.join(process.cwd(), 'content/tips'),
+  path.join(process.cwd(), 'content', 'tips')
+);
 
 type SearchIndexItem = {
   slug: string;
