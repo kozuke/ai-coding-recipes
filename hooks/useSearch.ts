@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import * as FlexSearch from 'flexsearch';
+import FlexSearch from 'flexsearch';
 
 export type SearchItem = {
   slug: string;
@@ -22,7 +22,7 @@ export function useSearch() {
   const [error, setError] = useState<Error | null>(null);
   
   const index = useMemo(() => {
-    const idx = new FlexSearch.Index({
+    const idx = FlexSearch.create({
       preset: 'performance',
       tokenize: 'full',
       cache: 100
